@@ -8,10 +8,30 @@ import {
   Pressable,
 } from "react-native";
 import { commonStyles } from "../styles/common";
-import Hero from "../components/Hero";
 import Icon from "react-native-vector-icons/AntDesign";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart } from "../features/cart/cartSlice";
+import {
+  selectServices,
+  selectPackages,
+} from "../features/storeData/storeDataSlice";
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
+  const dispatch = useDispatch();
+  const services = useSelector(selectServices);
+  const packages = useSelector(selectPackages);
+
+  const handleAddServiceToCart = (service) => {
+    dispatch(addItemToCart(service));
+  };
+
+  const handleAddPackageToCart = (pkg) => {
+    const packageServices = pkg.servicesIncluded.map((serviceId) =>
+      services.find((service) => service.id === serviceId)
+    );
+    packageServices.forEach((service) => dispatch(addItemToCart(service)));
+  };
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -24,7 +44,56 @@ export default function HomeScreen() {
             <Icon name="enviromento" size={24} color="black" />
           </Pressable>
         </View>
-        <Hero />
+
+        {/* Services Section */}
+        <View style={{ marginTop: 16, paddingHorizontal: 16 }}>
+          <Text style={{ fontSize: 18, marginBottom: 8 }}>Services</Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            {services.map((service) => (
+              <Pressable
+                key={service.id}
+                onPress={() => handleAddServiceToCart(service)}
+                style={{
+                  width: "48%",
+                  margin: "1%",
+                  height: 150,
+                  backgroundColor: "lightgray",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 8,
+                }}
+              >
+                <Text>{service.name}</Text>
+                <Text>${service.price}</Text>
+              </Pressable>
+            ))}
+          </View>
+        </View>
+
+        {/* Packages Section */}
+        <View style={{ marginTop: 16, paddingHorizontal: 16 }}>
+          <Text style={{ fontSize: 18, marginBottom: 8 }}>Packages</Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            {packages.map((pkg) => (
+              <Pressable
+                key={pkg.id}
+                onPress={() => handleAddPackageToCart(pkg)}
+                style={{
+                  width: "48%",
+                  margin: "1%",
+                  height: 150,
+                  backgroundColor: "lightgray",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 8,
+                }}
+              >
+                <Text>{pkg.name}</Text>
+                <Text>${pkg.price}</Text>
+              </Pressable>
+            ))}
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
