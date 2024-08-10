@@ -1,11 +1,16 @@
 import { StyleSheet } from "react-native";
 
 export const commonStyles = StyleSheet.create({
-  container: {
+  topBar: {
     padding: 16,
-    backgroundColor: "#fff",
     display: "flex",
-    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
+  },
+  logo: {
+    width: 124,
+    height: 64,
+    objectFit: "cover",
   },
 });
