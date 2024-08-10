@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Platform, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 
@@ -20,7 +20,9 @@ const AppointmentScreen = ({ navigation }) => {
       hideDatePicker();
       showTimePicker(); // Automatically show time picker after selecting date
     } else {
-      Alert.alert('Invalid Date', 'Please select a date that is not a weekend.');
+      Alert.alert('Invalid Date', 'Please select a date that is not a weekend.', [
+        { text: 'OK', onPress: () => { hideDatePicker(); showDatePicker(); } } // Re-show date picker
+      ]);
     }
   };
 
@@ -30,7 +32,9 @@ const AppointmentScreen = ({ navigation }) => {
       setSelectedTime(time);
       hideTimePicker();
     } else {
-      Alert.alert('Invalid Time', 'Please select a time between 10 AM and 4 PM.');
+      Alert.alert('Invalid Time', 'Please select a time between 10 AM and 4 PM.', [
+        { text: 'OK', onPress: () => { hideTimePicker(); showTimePicker(); } } // Re-show time picker
+      ]);
     }
   };
 
@@ -39,16 +43,14 @@ const AppointmentScreen = ({ navigation }) => {
 
   const handleNext = () => {
     if (selectedDate && selectedTime) {
-      // Navigate to the next screen (adjust as needed)
-      navigation.navigate('Cart');
+      navigation.navigate('Cart', { selectedDate, selectedTime });
     } else {
       Alert.alert('Incomplete Information', 'Please select both date and time.');
     }
   };
 
   const handlePrevious = () => {
-    // Navigate to the previous screen (adjust as needed)
-    navigation.navigate('Details');
+    navigation.navigate('Detail');
   };
 
   return (
