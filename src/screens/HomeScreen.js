@@ -21,15 +21,17 @@ export default function HomeScreen({ navigation }) {
   const services = useSelector(selectServices);
   const packages = useSelector(selectPackages);
 
-  const handleAddServiceToCart = (service) => {
+  const handleServicePress = (service) => {
     dispatch(addItemToCart(service));
+    navigation.navigate("Details", { serviceId: service.id });
   };
 
-  const handleAddPackageToCart = (pkg) => {
+  const handlePackagePress = (pkg) => {
     const packageServices = pkg.servicesIncluded.map((serviceId) =>
       services.find((service) => service.id === serviceId)
     );
     packageServices.forEach((service) => dispatch(addItemToCart(service)));
+    navigation.navigate("Details", { packageId: pkg.id });
   };
 
   return (
@@ -52,7 +54,7 @@ export default function HomeScreen({ navigation }) {
             {services.map((service) => (
               <Pressable
                 key={service.id}
-                onPress={() => handleAddServiceToCart(service)}
+                onPress={() => handleServicePress(service)}
                 style={{
                   width: "48%",
                   margin: "1%",
@@ -77,7 +79,7 @@ export default function HomeScreen({ navigation }) {
             {packages.map((pkg) => (
               <Pressable
                 key={pkg.id}
-                onPress={() => handleAddPackageToCart(pkg)}
+                onPress={() => handlePackagePress(pkg)}
                 style={{
                   width: "48%",
                   margin: "1%",
