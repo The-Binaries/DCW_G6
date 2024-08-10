@@ -1,0 +1,43 @@
+{
+    "packages": [
+        {
+            "id": 1,
+            "name": "Basic Wash Package",
+            "servicesIncluded": [
+                3
+            ],
+            "price": 30
+        },
+        {
+            "id": 2,
+            "name": "Deluxe Wash Package",
+            "servicesIncluded": [
+                3,
+                1
+            ],
+            "price": 50
+        },
+        {
+            "id": 3,
+            "name": "Premium Wash Package",
+            "servicesIncluded": [
+                3,
+                1,
+                2
+            ],
+            "price": 65
+        },
+        {
+            "id": 4,
+            "name": "Ultimate Detailing Package",
+            "servicesIncluded": [
+                3,
+                1,
+                2,
+                4,
+                5
+            ],
+            "price": 150
+        }
+    ]
+}
