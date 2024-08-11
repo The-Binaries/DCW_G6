@@ -71,12 +71,26 @@ Ensure you have the following installed on your machine:
 This is a totally rip off static application so we don't need to setup any environment variables.
 
 ## Screenshots
-![Screenshot_1723384585](https://github.com/user-attachments/assets/3eb57cef-1107-4eb4-9245-1a6501d0b05e)
-![Screenshot_1723384579](https://github.com/user-attachments/assets/5b9430d4-53bd-40fe-bd19-d9a5ea3fc546)
-![Screenshot_1723384575](https://github.com/user-attachments/assets/b618bfb1-171a-4482-a3ee-f54f37003875)
-![Screenshot_1723384564](https://github.com/user-attachments/assets/0c5ba9a0-4a21-40ef-be57-2ad81448bc14)
-![Screenshot_1723384555](https://github.com/user-attachments/assets/5ddd001c-db15-4caf-975a-59379ac68723)
-![Screenshot_1723384550](https://github.com/user-attachments/assets/0d9ab7fc-ca88-4784-abac-46e662d15d0a)
-![Screenshot_1723384542](https://github.com/user-attachments/assets/485c3c83-84ad-49d4-ad71-a0d72c2ef954)
-![Screenshot_1723384511](https://github.com/user-attachments/assets/0e117ffd-ebee-493a-bede-6033595c3943)
 
+### **Home Screen**
+
+![Screenshot_1723384511](https://github.com/user-attachments/assets/0e117ffd-ebee-493a-bede-6033595c3943)
+![Screenshot_1723384542](https://github.com/user-attachments/assets/485c3c83-84ad-49d4-ad71-a0d72c2ef954)
+
+### **Details Screen**
+
+![Screenshot_1723384550](https://github.com/user-attachments/assets/0d9ab7fc-ca88-4784-abac-46e662d15d0a)
+![Screenshot_1723384555](https://github.com/user-attachments/assets/5ddd001c-db15-4caf-975a-59379ac68723)
+
+### **Appointment Screen**
+
+![Screenshot_1723384564](https://github.com/user-attachments/assets/0c5ba9a0-4a21-40ef-be57-2ad81448bc14)
+![Screenshot_1723384575](https://github.com/user-attachments/assets/b618bfb1-171a-4482-a3ee-f54f37003875)
+
+### **Cart Screen**
+
+![Screenshot_1723384579](https://github.com/user-attachments/assets/5b9430d4-53bd-40fe-bd19-d9a5ea3fc546)
+
+### **Reservation List**
+
+![Screenshot_1723384585](https://github.com/user-attachments/assets/3eb57cef-1107-4eb4-9245-1a6501d0b05e)
