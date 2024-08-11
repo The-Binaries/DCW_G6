@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 
-const AppointmentScreen = ({ navigation }) => {
+const AppointmentScreen = ({ navigation, route }) => {
+  const { selectedServices } = route.params;
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -43,7 +44,11 @@ const AppointmentScreen = ({ navigation }) => {
 
   const handleNext = () => {
     if (selectedDate && selectedTime) {
-      navigation.navigate('Cart', { selectedDate, selectedTime });
+      navigation.navigate('Cart', {
+        selectedServices,
+        selectedDate,
+        selectedTime,
+      });
     } else {
       Alert.alert('Incomplete Information', 'Please select both date and time.');
     }

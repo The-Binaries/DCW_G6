@@ -57,14 +57,12 @@ export default function DetailScreen({ navigation }) {
 
   const handleServiceClick = (index, service) => {
     if (clickedServices[index]) {
-      console.log('Deselected Service:', service);
       setClickedServices((prev) => {
         const updatedClickedServices = { ...prev };
         delete updatedClickedServices[index];
         return updatedClickedServices;
       });
     } else {
-      console.log('Selected Service:', service);
       setClickedServices((prev) => ({
         ...prev,
         [index]: true,
@@ -73,12 +71,11 @@ export default function DetailScreen({ navigation }) {
   };
 
   const handleNext = () => {
-    // Navigate to the next screen (adjust as needed)
-    navigation.navigate('Appointment');
+    const selectedServices = Object.keys(clickedServices).map(index => services[index]);
+    navigation.navigate('Appointment', { selectedServices });
   };
 
   const handlePrevious = () => {
-    // Navigate to the previous screen (adjust as needed)
     navigation.navigate('Home');
   };
 
