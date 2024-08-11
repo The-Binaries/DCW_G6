@@ -4,10 +4,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import appointmentStyles from "../styles/appointment";
 import { useDispatch } from "react-redux";
-import {
-  clearAppointment,
-  setAppointment,
-} from "../features/appointment/appointmentSlice";
+import { clearAppointment, setAppointment } from "../features/appointment/appointmentSlice";
 
 const AppointmentScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -16,17 +13,31 @@ const AppointmentScreen = ({ navigation }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
 
+  const today = new Date(); // Get the current date
+
   const showDatePicker = () => setDatePickerVisibility(true);
   const hideDatePicker = () => setDatePickerVisibility(false);
   const showTimePicker = () => setTimePickerVisibility(true);
   const hideTimePicker = () => setTimePickerVisibility(false);
 
   const handleDateConfirm = (date) => {
-    if (date.getDay() !== 0 && date.getDay() !== 6) {
-      setSelectedDate(date);
-      hideDatePicker();
-      showTimePicker();
-    } else {
+    const dayOfWeek = date.getDay(); // Get the day of the week (0=Sunday, 6=Saturday)
+
+    if (date < today) {
+      Alert.alert(
+        "Invalid Date",
+        "Please select a date that is today or in the future.",
+        [
+          {
+            text: "OK",
+            onPress: () => {
+              hideDatePicker();
+              showDatePicker();
+            },
+          },
+        ]
+      );
+    } else if (dayOfWeek === 0 || dayOfWeek === 6) { // Check if it's a weekend
       Alert.alert(
         "Invalid Date",
         "Please select a date that is not a weekend.",
@@ -37,16 +48,19 @@ const AppointmentScreen = ({ navigation }) => {
               hideDatePicker();
               showDatePicker();
             },
-          }, // Re-show date picker
+          },
         ]
       );
+    } else {
+      setSelectedDate(date);
+      hideDatePicker();
+      showTimePicker();
     }
   };
 
   const handleTimeConfirm = (time) => {
     const hour = time.getHours();
     if (hour >= 10 && hour <= 16) {
-      // Time between 10 AM and 4 PM
       setSelectedTime(time);
       hideTimePicker();
     } else {
@@ -60,7 +74,7 @@ const AppointmentScreen = ({ navigation }) => {
               hideTimePicker();
               showTimePicker();
             },
-          }, // Re-show time picker
+          },
         ]
       );
     }
@@ -73,18 +87,7 @@ const AppointmentScreen = ({ navigation }) => {
 
   const handleNext = () => {
     if (selectedDate && selectedTime) {
-      const setAppointment = (date, time) => {
-        return {
-          type: "appointment/setAppointment",
-          payload: {
-            date: date.toISOString(),
-            time: time.toISOString(),
-          },
-        };
-      };
-
-      dispatch(setAppointment(new Date(), new Date()));
-
+      dispatch(setAppointment(selectedDate, selectedTime));
       navigation.navigate("Cart");
     } else {
       Alert.alert(
@@ -118,6 +121,7 @@ const AppointmentScreen = ({ navigation }) => {
         <DateTimePickerModal
           isVisible={isDatePickerVisible}
           mode="date"
+          minimumDate={today} // Set minimum date to today
           onConfirm={handleDateConfirm}
           onCancel={hideDatePicker}
         />
