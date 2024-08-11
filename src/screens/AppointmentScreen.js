@@ -13,7 +13,7 @@ const AppointmentScreen = ({ navigation }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
 
-  const today = new Date(); // Get the current date
+  const today = new Date(); 
 
   const showDatePicker = () => setDatePickerVisibility(true);
   const hideDatePicker = () => setDatePickerVisibility(false);
@@ -132,7 +132,7 @@ const AppointmentScreen = ({ navigation }) => {
         <DateTimePickerModal
           isVisible={isDatePickerVisible}
           mode="date"
-          minimumDate={today} // Set minimum date to today
+          minimumDate={today} 
           onConfirm={handleDateConfirm}
           onCancel={hideDatePicker}
         />

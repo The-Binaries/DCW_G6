@@ -32,9 +32,9 @@ const imageMap = {
 };
 
 export default function HomeScreen({ navigation }) {
-  const [location, setLocation] = useState(null); // State to store location
+  const [location, setLocation] = useState(null); 
   const [errorMsg, setErrorMsg] = useState(null);
-  const [address, setAddress] = useState(null); // State to store reverse geocoded address
+  const [address, setAddress] = useState(null); 
   const dispatch = useDispatch();
   const services = useSelector(selectServices);
   const packages = useSelector(selectPackages);
@@ -51,7 +51,6 @@ export default function HomeScreen({ navigation }) {
         let location = await Location.getCurrentPositionAsync({});
         setLocation(location);
 
-        // Reverse geocoding to get the address
         let [reverseGeocode] = await Location.reverseGeocodeAsync({
           latitude: location.coords.latitude,
           longitude: location.coords.longitude,
@@ -60,7 +59,7 @@ export default function HomeScreen({ navigation }) {
         setAddress(reverseGeocode);
       } catch (error) {
         setErrorMsg("An error occurred while fetching location");
-        console.error(error); // Logs the error for debugging
+        console.error(error); 
       }
     };
 
@@ -98,7 +97,6 @@ export default function HomeScreen({ navigation }) {
       <ScrollView>
         <TopBar navigation={navigation} />
 
-        {/* Location Panel */}
         <View
           style={{
             padding: 16,
@@ -135,7 +133,6 @@ export default function HomeScreen({ navigation }) {
           </View>
         </View>
 
-        {/* Services Section */}
         <View style={{ marginTop: 16, paddingHorizontal: 16 }}>
           <Text style={{ fontSize: 18, marginBottom: 8 }}>Services</Text>
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
@@ -169,7 +166,6 @@ export default function HomeScreen({ navigation }) {
           </View>
         </View>
 
-        {/* Packages Section */}
         <View style={{ marginTop: 16, paddingHorizontal: 16 }}>
           <Text style={{ fontSize: 18, marginBottom: 8 }}>Packages</Text>
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>

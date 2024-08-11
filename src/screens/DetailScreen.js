@@ -28,7 +28,6 @@ export default function DetailScreen({ navigation }) {
 
   const [clickedServices, setClickedServices] = useState({});
 
-  // Initialize clickedServices based on cart items
   useEffect(() => {
     const initialClickedServices = {};
     cartItems.forEach((item) => {

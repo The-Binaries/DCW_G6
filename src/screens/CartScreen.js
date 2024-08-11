@@ -23,8 +23,6 @@ const CartScreen = ({ navigation }) => {
         totalPrice: totalPrice,
       };
 
-      //   console.log("Dispatching reservation:", reservation);
-
       dispatch(addReservation(reservation));
       dispatch(clearCart());
       dispatch(clearAppointment());
