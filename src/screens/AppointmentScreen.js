@@ -4,7 +4,8 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import appointmentStyles from "../styles/appointment";
 import { useDispatch } from "react-redux";
-import { clearAppointment, setAppointment } from "../features/appointment/appointmentSlice";
+import { clearAppointment } from "../features/appointment/appointmentSlice";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const AppointmentScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const AppointmentScreen = ({ navigation }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
 
-  const today = new Date(); 
+  const today = new Date();
 
   const showDatePicker = () => setDatePickerVisibility(true);
   const hideDatePicker = () => setDatePickerVisibility(false);
@@ -21,7 +22,7 @@ const AppointmentScreen = ({ navigation }) => {
   const hideTimePicker = () => setTimePickerVisibility(false);
 
   const handleDateConfirm = (date) => {
-    const dayOfWeek = date.getDay(); 
+    const dayOfWeek = date.getDay();
 
     if (date < today) {
       Alert.alert(
@@ -37,7 +38,7 @@ const AppointmentScreen = ({ navigation }) => {
           },
         ]
       );
-    } else if (dayOfWeek === 0 || dayOfWeek === 6) { 
+    } else if (dayOfWeek === 0 || dayOfWeek === 6) {
       Alert.alert(
         "Invalid Date",
         "Please select a date that is not a weekend.",
@@ -114,7 +115,7 @@ const AppointmentScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={appointmentStyles.container}>
+    <SafeAreaView style={appointmentStyles.container}>
       <View style={appointmentStyles.header}>
         <Text style={appointmentStyles.headerText}>
           Select Your Appointment
@@ -132,7 +133,7 @@ const AppointmentScreen = ({ navigation }) => {
         <DateTimePickerModal
           isVisible={isDatePickerVisible}
           mode="date"
-          minimumDate={today} 
+          minimumDate={today}
           onConfirm={handleDateConfirm}
           onCancel={hideDatePicker}
         />
@@ -162,7 +163,7 @@ const AppointmentScreen = ({ navigation }) => {
           <Text style={appointmentStyles.buttonText}>Next</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

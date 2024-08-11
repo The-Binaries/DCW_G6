@@ -9,6 +9,7 @@ import {
 import { selectServices } from "../features/storeData/storeDataSlice";
 import { selectCartItems } from "../features/cart/cartSlice";
 import detailStyles from "../styles/details";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const imageMap = {
   "exterior_car_washing.jpg": require("../../assets/images/exterior_car_washing.jpg"),
@@ -63,7 +64,7 @@ export default function DetailScreen({ navigation }) {
   };
 
   return (
-    <View style={detailStyles.container}>
+    <SafeAreaView style={detailStyles.container}>
       <ScrollView style={detailStyles.scrollView}>
         {services.map((service) => (
           <TouchableOpacity
@@ -96,6 +97,6 @@ export default function DetailScreen({ navigation }) {
           <Text style={detailStyles.buttonText}>Next</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

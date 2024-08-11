@@ -6,6 +6,7 @@ import cartStyles from "../styles/cart";
 import { addReservation } from "../features/reservation/reservationSlice";
 import { clearCart } from "../features/cart/cartSlice";
 import { clearAppointment } from "../features/appointment/appointmentSlice";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const CartScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const CartScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={cartStyles.container}>
+    <SafeAreaView style={cartStyles.container}>
       <Text style={cartStyles.header}>Confirmation Screen</Text>
       {selectedServices && selectedServices.length > 0 ? (
         <FlatList
@@ -79,7 +80,7 @@ const CartScreen = ({ navigation }) => {
           <Text style={cartStyles.buttonText}>Submit</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

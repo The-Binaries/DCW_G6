@@ -11,6 +11,7 @@ import moment from "moment";
 import { selectReservations } from "../features/reservation/reservationSlice";
 import reservationStyles from "../styles/reservation";
 import commonStyles from "../styles/common";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const ReservationListScreen = ({ navigation }) => {
   const reservations = useSelector(selectReservations);
@@ -41,7 +42,7 @@ const ReservationListScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={reservationStyles.container}>
+    <SafeAreaView style={reservationStyles.container}>
       <Text style={reservationStyles.header}>My Reservations</Text>
       {reservations && reservations.length > 0 ? (
         <FlatList
@@ -60,7 +61,7 @@ const ReservationListScreen = ({ navigation }) => {
       >
         <Text style={commonStyles.buttonText}>Go Back Home</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
