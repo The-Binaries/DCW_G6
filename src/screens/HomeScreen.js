@@ -10,7 +10,10 @@ import {
 import { commonStyles } from "../styles/common";
 import Icon from "react-native-vector-icons/AntDesign";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToCart } from "../features/cart/cartSlice";
+import {
+  addItemToCart,
+  addMultipleItemsToCart,
+} from "../features/cart/cartSlice";
 import {
   selectServices,
   selectPackages,
@@ -30,7 +33,7 @@ export default function HomeScreen({ navigation }) {
     const packageServices = pkg.servicesIncluded.map((serviceId) =>
       services.find((service) => service.id === serviceId)
     );
-    packageServices.forEach((service) => dispatch(addItemToCart(service)));
+    dispatch(addMultipleItemsToCart(packageServices));
     navigation.navigate("Details", { packageId: pkg.id });
   };
 

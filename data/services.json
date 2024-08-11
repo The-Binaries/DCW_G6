@@ -2,33 +2,59 @@
     "services": [
         {
             "id": 1,
-            "name": "Full Interior Vacuuming",
-            "description": "Thorough vacuuming of the car's interior, including seats, carpets, and floor mats.",
-            "price": 25
-        },
-        {
-            "id": 2,
-            "name": "Interior Window Cleaning",
-            "description": "Cleaning of all interior windows to remove smudges and fingerprints.",
+            "name": "Exterior Hand Wash",
+            "image": "../../assets/images/exterior_car_washing.jpg",
+            "description": "Thorough washing of the car’s exterior using hand washing techniques.",
             "price": 15
         },
         {
+            "id": 2,
+            "name": "Interior Vacuuming",
+            "image": "../../assets/images/interior_vacuuming.jpg",
+            "description": "Vacuuming the seats, carpets, and floor mats to remove dirt and debris.",
+            "price": 20
+        },
+        {
             "id": 3,
-            "name": "Exterior Steam Wash",
-            "description": "High-pressure steam cleaning of the car's exterior to remove dirt and grime.",
-            "price": 30
+            "name": "Waxing and Polishing",
+            "image": "../../assets/images/waxing_cars.jpeg",
+            "description": "Applying wax and polish to protect and enhance the shine of the car’s paint.",
+            "price": 25
         },
         {
             "id": 4,
-            "name": "Leather Seat Treatment",
-            "description": "Cleaning and conditioning of leather seats to maintain their appearance and longevity.",
-            "price": 40
+            "name": "Tire and Wheel Cleaning",
+            "image": "../../assets/images/wheel_cleaning.jpeg",
+            "description": "Cleaning and shining the tires and wheels.",
+            "price": 10
         },
         {
             "id": 5,
-            "name": "Engine Bay Cleaning",
-            "description": "Thorough cleaning of the engine bay to remove oil and dirt buildup.",
+            "name": "Leather Cleaning and Conditioning",
+            "image": "../../assets/images/leather_cleaning.jpeg",
+            "description": "Cleaning and conditioning leather seats and surfaces.",
+            "price": 30
+        },
+        {
+            "id": 6,
+            "name": "Window Cleaning",
+            "image": "../../assets/images/window_cleaning.jpeg",
+            "description": "Cleaning the inside and outside of the car windows.",
+            "price": 8
+        },
+        {
+            "id": 7,
+            "name": "Engine Detailing",
+            "image": "../../assets/images/engine_detailing.webp",
+            "description": "Cleaning the engine bay to remove dirt, grease, and grime.",
             "price": 50
+        },
+        {
+            "id": 8,
+            "name": "Headlight Restoration",
+            "image": "../../assets/images/headlight_restoration.jpg",
+            "description": "Restoring the clarity of foggy or yellowed headlights.",
+            "price": 35
         }
     ]
 }

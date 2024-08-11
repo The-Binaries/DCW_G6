@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import servicesData from "../../../data/services.json";
 import packagesData from "../../../data/packages.json";
+
 const initialState = {
   services: servicesData.services,
   packages: packagesData.packages,
