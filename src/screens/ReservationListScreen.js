@@ -7,6 +7,7 @@ import reservationStyles from "../styles/reservation";
 
 const ReservationListScreen = () => {
   const reservations = useSelector(selectReservations);
+  console.log(reservations);
   const renderReservationItem = ({ item }) => (
     <View style={reservationStyles.reservationItem}>
       <Text style={reservationStyles.reservationDate}>

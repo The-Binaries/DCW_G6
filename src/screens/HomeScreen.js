@@ -63,7 +63,7 @@ export default function HomeScreen({ navigation }) {
   return (
     <SafeAreaView>
       <ScrollView>
-        <TopBar />
+        <TopBar navigation={navigation} />
         {/* Services Section */}
         <View style={{ marginTop: 16, paddingHorizontal: 16 }}>
           <Text style={{ fontSize: 18, marginBottom: 8 }}>Services</Text>

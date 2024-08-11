@@ -9,9 +9,9 @@ import {
 
 import commonStyles from "../styles/common";
 
-const TopBar = () => {
+const TopBar = ({ navigation }) => {
   const handleAvatarPress = () => {
-    console.log("Avatar pressed");
+    navigation.navigate("Reservations");
   };
 
   return (

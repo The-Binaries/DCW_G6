@@ -19,16 +19,19 @@ const CartScreen = ({ navigation }) => {
   const handleSubmit = () => {
     if (selectedDate && selectedTime && selectedServices.length > 0) {
       const reservation = {
-        date: selectedDate,
-        time: selectedTime,
+        date: new Date(selectedDate).toISOString(),
+        time: new Date(selectedTime).toISOString(),
         services: selectedServices,
         totalPrice: totalPrice,
       };
 
+      console.log("Dispatching reservation:", reservation);
+
       dispatch(addReservation(reservation));
-      navigation.navigate("Home");
+
       dispatch(clearCart());
       dispatch(clearAppointment());
+      navigation.navigate("Home");
     } else {
       Alert.alert(
         "Incomplete Information",
