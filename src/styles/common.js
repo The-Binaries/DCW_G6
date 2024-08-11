@@ -13,6 +13,19 @@ const commonStyles = StyleSheet.create({
     height: 64,
     objectFit: "cover",
   },
+  button: {
+    backgroundColor: "#007bff",
+    padding: 10,
+    borderRadius: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    width: "100%",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+  },
 });
 
 export default commonStyles;

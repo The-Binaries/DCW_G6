@@ -1,3 +1,4 @@
+import { QueryStatus } from "@reduxjs/toolkit/query";
 import { StyleSheet } from "react-native";
 const reservationStyles = StyleSheet.create({
   container: {
@@ -38,7 +39,7 @@ const reservationStyles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: "#007bff",
-    marginTop: 10,
+    marginVertical: 10,
   },
   servicesContainer: {
     marginTop: 15,
