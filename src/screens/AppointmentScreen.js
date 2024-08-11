@@ -21,7 +21,7 @@ const AppointmentScreen = ({ navigation }) => {
   const hideTimePicker = () => setTimePickerVisibility(false);
 
   const handleDateConfirm = (date) => {
-    const dayOfWeek = date.getDay(); // Get the day of the week (0=Sunday, 6=Saturday)
+    const dayOfWeek = date.getDay(); 
 
     if (date < today) {
       Alert.alert(
@@ -37,7 +37,7 @@ const AppointmentScreen = ({ navigation }) => {
           },
         ]
       );
-    } else if (dayOfWeek === 0 || dayOfWeek === 6) { // Check if it's a weekend
+    } else if (dayOfWeek === 0 || dayOfWeek === 6) { 
       Alert.alert(
         "Invalid Date",
         "Please select a date that is not a weekend.",
