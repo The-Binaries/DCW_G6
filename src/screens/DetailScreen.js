@@ -1,9 +1,33 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import servicesData from '../services.json';
+import servicesData from '../../data/services.json';
 
 export default function DetailScreen({ navigation }) {
   const [clickedServices, setClickedServices] = useState({});
+
+  // Function to resolve image paths
+  const resolveImage = (imagePath) => {
+    switch(imagePath) {
+      case '../../assets/images/exterior_car_washing.jpg':
+        return require('../../assets/images/exterior_car_washing.jpg');
+      case '../../assets/images/interior_vacuuming.jpg':
+        return require('../../assets/images/interior_vacuuming.jpg');
+      case '../../assets/images/waxing_cars.jpeg':
+        return require('../../assets/images/waxing_cars.jpeg');
+      case '../../assets/images/wheel_cleaning.jpeg':
+        return require('../../assets/images/wheel_cleaning.jpeg');
+      case '../../assets/images/leather_cleaning.jpeg':
+        return require('../../assets/images/leather_cleaning.jpeg');
+      case '../../assets/images/window_cleaning.jpeg':
+        return require('../../assets/images/window_cleaning.jpeg');
+      case '../../assets/images/engine_detailing.webp':
+        return require('../../assets/images/engine_detailing.webp');
+      case '../../assets/images/headlight_restoration.jpg':
+        return require('../../assets/images/headlight_restoration.jpg');
+      default:
+        return null;
+    }
+  };
 
   const handleServiceClick = (index, service) => {
     if (clickedServices[index]) {
@@ -41,10 +65,10 @@ export default function DetailScreen({ navigation }) {
             style={[styles.card, clickedServices[index] && styles.selectedCard]}
             onPress={() => handleServiceClick(index, service)}
           >
-            <Image source={service.image} style={styles.image} />
+            <Image source={resolveImage(service.image)} style={styles.image} />
             <Text style={styles.name}>{service.name}</Text>
             <Text style={styles.description}>{service.description}</Text>
-            <Text style={styles.price}>{service.price}</Text>
+            <Text style={styles.price}>${service.price}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
