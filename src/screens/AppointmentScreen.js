@@ -73,7 +73,17 @@ const AppointmentScreen = ({ navigation }) => {
 
   const handleNext = () => {
     if (selectedDate && selectedTime) {
-      dispatch(setAppointment({ date: selectedDate, time: selectedTime }));
+      const setAppointment = (date, time) => {
+        return {
+          type: "appointment/setAppointment",
+          payload: {
+            date: date.toISOString(),
+            time: time.toISOString(),
+          },
+        };
+      };
+
+      dispatch(setAppointment(new Date(), new Date()));
 
       navigation.navigate("Cart");
     } else {

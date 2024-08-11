@@ -9,12 +9,8 @@ export const store = configureStore({
     cart: cartReducer,
     storeData: storeDataReducer,
     appointment: appointmentReducer,
-    reservation: reservationReducer,
+    reservations: reservationReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false, // Disable serializable value check
-    }),
 });
 
 export default store;

@@ -8,27 +8,24 @@ import { clearCart } from "../features/cart/cartSlice";
 import { clearAppointment } from "../features/appointment/appointmentSlice";
 
 const CartScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
   const selectedServices = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const { date: selectedDate, time: selectedTime } = useSelector(
     (state) => state.appointment
   );
-
-  const dispatch = useDispatch();
-
   const handleSubmit = () => {
     if (selectedDate && selectedTime && selectedServices.length > 0) {
       const reservation = {
-        date: new Date(selectedDate).toISOString(),
-        time: new Date(selectedTime).toISOString(),
+        date: selectedDate,
+        time: selectedTime,
         services: selectedServices,
         totalPrice: totalPrice,
       };
 
-      console.log("Dispatching reservation:", reservation);
+      //   console.log("Dispatching reservation:", reservation);
 
       dispatch(addReservation(reservation));
-
       dispatch(clearCart());
       dispatch(clearAppointment());
       navigation.navigate("Home");
