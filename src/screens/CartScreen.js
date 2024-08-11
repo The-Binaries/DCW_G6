@@ -5,6 +5,13 @@ import moment from 'moment';
 const CartScreen = ({ route, navigation }) => {
   const { selectedDate, selectedTime, selectedServices } = route.params;
 
+  const calculateTotalPrice = () => {
+    return selectedServices.reduce((total, service) => {
+      const price = parseFloat(service.price.replace('$', ''));
+      return total + price;
+    }, 0);
+  };
+
   const renderServiceItem = ({ item }) => (
     <View style={styles.serviceItem}>
       <Text style={styles.serviceName}>{item.name}</Text>
@@ -28,13 +35,14 @@ const CartScreen = ({ route, navigation }) => {
       <View style={styles.appointmentInfo}>
         <Text>Appointment Date: {moment(selectedDate).format('MMMM D, YYYY')}</Text>
         <Text>Appointment Time: {moment(selectedTime).format('h:mm A')}</Text>
+        <Text style={styles.totalPriceText}>Grand Total: ${calculateTotalPrice().toFixed(2)}</Text>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
           <Text style={styles.buttonText}>Previous</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Submit Order</Text>
+          <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -89,6 +97,12 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     borderWidth: 1,
     marginTop: 20,
+  },
+  totalPriceText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#007bff',
+    marginTop: 10,
   },
   buttonContainer: {
     flexDirection: 'row',
