@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ScrollView,
   View,
@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   Pressable,
 } from "react-native";
+import * as Location from "expo-location";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addItemToCart,
@@ -17,6 +18,7 @@ import {
   selectPackages,
 } from "../features/storeData/storeDataSlice";
 import TopBar from "../components/Topbar";
+import { homeStyles } from "../styles/home";
 
 const imageMap = {
   "exterior_car_washing.jpg": require("../../assets/images/exterior_car_washing.jpg"),
@@ -30,9 +32,40 @@ const imageMap = {
 };
 
 export default function HomeScreen({ navigation }) {
+  const [location, setLocation] = useState(null); // State to store location
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [address, setAddress] = useState(null); // State to store reverse geocoded address
   const dispatch = useDispatch();
   const services = useSelector(selectServices);
   const packages = useSelector(selectPackages);
+
+  useEffect(() => {
+    const getLocation = async () => {
+      try {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== "granted") {
+          setErrorMsg("Permission to access location was denied");
+          return;
+        }
+
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
+
+        // Reverse geocoding to get the address
+        let [reverseGeocode] = await Location.reverseGeocodeAsync({
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        });
+
+        setAddress(reverseGeocode);
+      } catch (error) {
+        setErrorMsg("An error occurred while fetching location");
+        console.error(error); // Logs the error for debugging
+      }
+    };
+
+    getLocation();
+  }, []);
 
   const handleServicePress = (service) => {
     dispatch(addItemToCart(service));
@@ -64,6 +97,44 @@ export default function HomeScreen({ navigation }) {
     <SafeAreaView>
       <ScrollView>
         <TopBar navigation={navigation} />
+
+        {/* Location Panel */}
+        <View
+          style={{
+            padding: 16,
+            backgroundColor: "lightblue",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          {location ? (
+            <View>
+              <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                Current Location
+              </Text>
+              <Text>
+                Latitude: {location.coords.latitude}, Longitude:{" "}
+                {location.coords.longitude}
+              </Text>
+              {address && (
+                <Text>
+                  Location: {address.city}, {address.region}, {address.country}
+                </Text>
+              )}
+            </View>
+          ) : (
+            <Text>{errorMsg || "Fetching location..."}</Text>
+          )}
+          <View style={homeStyles.avatarContainer}>
+            <Image
+              source={require("../../assets/user.png")}
+              style={homeStyles.avatar}
+            />
+          </View>
+        </View>
+
         {/* Services Section */}
         <View style={{ marginTop: 16, paddingHorizontal: 16 }}>
           <Text style={{ fontSize: 18, marginBottom: 8 }}>Services</Text>
