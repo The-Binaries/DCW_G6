@@ -1,56 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-
-const services = [
-  {
-    name: 'Exterior Hand Wash',
-    image: require('../../assets/images/exterior_car_washing.jpg'),
-    description: 'Thorough washing of the car’s exterior using hand washing techniques.',
-    price: '$15',
-  },
-  {
-    name: 'Interior Vacuuming',
-    image: require('../../assets/images/interior_vacuuming.jpg'),
-    description: 'Vacuuming the seats, carpets, and floor mats to remove dirt and debris.',
-    price: '$20',
-  },
-  {
-    name: 'Waxing and Polishing',
-    image: require('../../assets/images/waxing_cars.jpeg'),
-    description: 'Applying wax and polish to protect and enhance the shine of the car’s paint.',
-    price: '$25',
-  },
-  {
-    name: 'Tire and Wheel Cleaning',
-    image: require('../../assets/images/wheel_cleaning.jpeg'),
-    description: 'Cleaning and shining the tires and wheels.',
-    price: '$10',
-  },
-  {
-    name: 'Leather Cleaning and Conditioning',
-    image: require('../../assets/images/leather_cleaning.jpeg'),
-    description: 'Cleaning and conditioning leather seats and surfaces.',
-    price: '$30',
-  },
-  {
-    name: 'Window Cleaning',
-    image: require('../../assets/images/window_cleaning.jpeg'),
-    description: 'Cleaning the inside and outside of the car windows.',
-    price: '$8',
-  },
-  {
-    name: 'Engine Detailing',
-    image: require('../../assets/images/engine_detailing.webp'),
-    description: 'Cleaning the engine bay to remove dirt, grease, and grime.',
-    price: '$50',
-  },
-  {
-    name: 'Headlight Restoration',
-    image: require('../../assets/images/headlight_restoration.jpg'),
-    description: 'Restoring the clarity of foggy or yellowed headlights.',
-    price: '$35',
-  },
-];
+import servicesData from '../services.json';
 
 export default function DetailScreen({ navigation }) {
   const [clickedServices, setClickedServices] = useState({});
@@ -85,7 +35,7 @@ export default function DetailScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        {services.map((service, index) => (
+        {servicesData.services.map((service, index) => (
           <TouchableOpacity
             key={index}
             style={[styles.card, clickedServices[index] && styles.selectedCard]}
