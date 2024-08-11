@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  View,
-  Image,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
-
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import commonStyles from "../styles/common";
 
 const TopBar = ({ navigation }) => {
@@ -25,10 +19,7 @@ const TopBar = ({ navigation }) => {
         onPress={handleAvatarPress}
         style={styles.avatarContainer}
       >
-        <Image
-          source={require("../../assets/user.png")}
-          style={styles.avatar}
-        />
+        <Icon name="receipt" size={30} color="black" />
       </TouchableOpacity>
     </View>
   );
