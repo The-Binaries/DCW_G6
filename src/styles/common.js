@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const commonStyles = StyleSheet.create({
+const commonStyles = StyleSheet.create({
   topBar: {
     padding: 16,
     display: "flex",
@@ -14,3 +14,5 @@ export const commonStyles = StyleSheet.create({
     objectFit: "cover",
   },
 });
+
+export default commonStyles;

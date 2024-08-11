@@ -7,8 +7,6 @@ import {
   SafeAreaView,
   Pressable,
 } from "react-native";
-import { commonStyles } from "../styles/common";
-import Icon from "react-native-vector-icons/AntDesign";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addItemToCart,
@@ -18,6 +16,7 @@ import {
   selectServices,
   selectPackages,
 } from "../features/storeData/storeDataSlice";
+import TopBar from "../components/Topbar";
 
 const imageMap = {
   "exterior_car_washing.jpg": require("../../assets/images/exterior_car_washing.jpg"),
@@ -64,16 +63,7 @@ export default function HomeScreen({ navigation }) {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View style={[commonStyles.topBar, { paddingTop: 48 }]}>
-          <Image
-            source={require("../../assets/icon.png")}
-            style={commonStyles.logo}
-          />
-          <Pressable onPress={() => console.log("pressed ")}>
-            <Icon name="enviromento" size={24} color="black" />
-          </Pressable>
-        </View>
-
+        <TopBar />
         {/* Services Section */}
         <View style={{ marginTop: 16, paddingHorizontal: 16 }}>
           <Text style={{ fontSize: 18, marginBottom: 8 }}>Services</Text>
