@@ -7,7 +7,7 @@ import {
   removeItemFromCart,
 } from "../features/cart/cartSlice";
 import { selectServices } from "../features/storeData/storeDataSlice";
-import { selectCartItems } from "../features/cart/cartSlice"; // New selector import
+import { selectCartItems } from "../features/cart/cartSlice";
 import detailStyles from "../styles/details";
 
 const imageMap = {
@@ -39,14 +39,14 @@ export default function DetailScreen({ navigation }) {
 
   const handleServiceClick = (service) => {
     if (clickedServices[service.id]) {
-      dispatch(removeItemFromCart(service.id)); // Remove from cart
+      dispatch(removeItemFromCart(service.id));
       setClickedServices((prev) => {
         const updatedClickedServices = { ...prev };
         delete updatedClickedServices[service.id];
         return updatedClickedServices;
       });
     } else {
-      dispatch(addItemToCart(service)); // Add to cart
+      dispatch(addItemToCart(service));
       setClickedServices((prev) => ({
         ...prev,
         [service.id]: true,
@@ -89,7 +89,11 @@ export default function DetailScreen({ navigation }) {
         <TouchableOpacity style={detailStyles.button} onPress={handlePrevious}>
           <Text style={detailStyles.buttonText}>Previous</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={detailStyles.button} onPress={handleNext}>
+        <TouchableOpacity
+          style={detailStyles.button}
+          disabled={cartItems.length < 1}
+          onPress={handleNext}
+        >
           <Text style={detailStyles.buttonText}>Next</Text>
         </TouchableOpacity>
       </View>
