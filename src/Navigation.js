@@ -5,6 +5,7 @@ import HomeScreen from "./screens/HomeScreen";
 import DetailScreen from "./screens/DetailScreen";
 import CartScreen from "./screens/CartScreen";
 import AppointmentScreen from "./screens/AppointmentScreen";
+import ReservationListScreen from "./screens/ReservationListScreen";
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ const Navigation = () => {
         <Stack.Screen name="Details" component={DetailScreen} />
         <Stack.Screen name="Cart" component={CartScreen} />
         <Stack.Screen name="Appointment" component={AppointmentScreen} />
+        <Stack.Screen name="Reservations" component={ReservationListScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

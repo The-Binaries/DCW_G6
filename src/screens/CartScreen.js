@@ -8,14 +8,12 @@ import { clearCart } from "../features/cart/cartSlice";
 import { clearAppointment } from "../features/appointment/appointmentSlice";
 
 const CartScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
   const selectedServices = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const { date: selectedDate, time: selectedTime } = useSelector(
     (state) => state.appointment
   );
-
-  const dispatch = useDispatch();
-
   const handleSubmit = () => {
     if (selectedDate && selectedTime && selectedServices.length > 0) {
       const reservation = {
@@ -25,10 +23,12 @@ const CartScreen = ({ navigation }) => {
         totalPrice: totalPrice,
       };
 
+      //   console.log("Dispatching reservation:", reservation);
+
       dispatch(addReservation(reservation));
-      navigation.navigate("Home");
       dispatch(clearCart());
       dispatch(clearAppointment());
+      navigation.navigate("Home");
     } else {
       Alert.alert(
         "Incomplete Information",
