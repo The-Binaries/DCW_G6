@@ -19,6 +19,17 @@ import {
   selectPackages,
 } from "../features/storeData/storeDataSlice";
 
+const imageMap = {
+  "exterior_car_washing.jpg": require("../../assets/images/exterior_car_washing.jpg"),
+  "interior_vacuuming.jpg": require("../../assets/images/interior_vacuuming.jpg"),
+  "waxing_cars.jpeg": require("../../assets/images/waxing_cars.jpeg"),
+  "wheel_cleaning.jpeg": require("../../assets/images/wheel_cleaning.jpeg"),
+  "leather_cleaning.jpeg": require("../../assets/images/leather_cleaning.jpeg"),
+  "window_cleaning.jpeg": require("../../assets/images/window_cleaning.jpeg"),
+  "engine_detailing.webp": require("../../assets/images/engine_detailing.webp"),
+  "headlight_restoration.jpg": require("../../assets/images/headlight_restoration.jpg"),
+};
+
 export default function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
   const services = useSelector(selectServices);
@@ -35,6 +46,19 @@ export default function HomeScreen({ navigation }) {
     );
     dispatch(addMultipleItemsToCart(packageServices));
     navigation.navigate("Details", { packageId: pkg.id });
+  };
+
+  const getImageForService = (imageName) => {
+    return imageMap[imageName] || require("../../assets/icon.png");
+  };
+
+  const getImageForPackage = (pkg) => {
+    const randomIndex = Math.floor(Math.random() * pkg.servicesIncluded.length);
+    const serviceId = pkg.servicesIncluded[randomIndex];
+    const serviceImage = services.find(
+      (service) => service.id === serviceId
+    )?.image;
+    return getImageForService(serviceImage);
   };
 
   return (
@@ -68,6 +92,15 @@ export default function HomeScreen({ navigation }) {
                   borderRadius: 8,
                 }}
               >
+                <Image
+                  source={getImageForService(service.image)}
+                  style={{
+                    width: "100%",
+                    height: "60%",
+                    borderRadius: 8,
+                  }}
+                  resizeMode="cover"
+                />
                 <Text>{service.name}</Text>
                 <Text>${service.price}</Text>
               </Pressable>
@@ -93,6 +126,15 @@ export default function HomeScreen({ navigation }) {
                   borderRadius: 8,
                 }}
               >
+                <Image
+                  source={getImageForPackage(pkg)}
+                  style={{
+                    width: "100%",
+                    height: "60%",
+                    borderRadius: 8,
+                  }}
+                  resizeMode="cover"
+                />
                 <Text>{pkg.name}</Text>
                 <Text>${pkg.price}</Text>
               </Pressable>
